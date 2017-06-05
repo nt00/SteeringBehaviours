@@ -25,35 +25,35 @@ public class Graph : MonoBehaviour
         CreateGrid();
     }
 
-    //void OnDrawGizmosSelected()
-    //{
-    //    Gizmos.color = new Color(0, 0, 1, 0.5f);
-    //    Gizmos.DrawCube(transform.position, transform.localScale);
-    //    // Check if nodes have been created
-    //    if (nodes != null)
-    //    {
-    //        // Loop through all nodes
-    //        for(int x = 0; x < nodes.GetLength(0); x++)
-    //        {
-    //            for(int z = 0; z < nodes.GetLength(1); z++)
-    //            {
-    //                // Get the node and store it in variable
-    //                Node node = nodes[x, z];
-    //
-    //                Gizmos.color = node.walkable ? new Color(0, 0, 1, 0.5f) : 
-    //                                               new Color(1, 0, 0, 0.5f);
-    //
-    //                if(path != null && path.Contains(node))
-    //                {
-    //                    Gizmos.color = Color.black;
-    //                }
-    //                
-    //                // Draw a sphere to represent the node
-    //                Gizmos.DrawSphere(node.position, nodeRadius);
-    //            }
-    //        }
-    //    }
-    //}
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = new Color(0, 0, 1, 0.5f);
+        Gizmos.DrawCube(transform.position, transform.localScale);
+        // Check if nodes have been created
+        if (nodes != null)
+        {
+            // Loop through all nodes
+            for (int x = 0; x < nodes.GetLength(0); x++)
+            {
+                for (int z = 0; z < nodes.GetLength(1); z++)
+                {
+                    // Get the node and store it in variable
+                    Node node = nodes[x, z];
+
+                    Gizmos.color = node.walkable ? new Color(0, 0, 1, 0.5f) :
+                                                   new Color(1, 0, 0, 0.5f);
+
+                    if (path != null && path.Contains(node))
+                    {
+                        Gizmos.color = Color.black;
+                    }
+
+                    // Draw a sphere to represent the node
+                    Gizmos.DrawSphere(node.position, nodeRadius);
+                }
+            }
+        }
+    }
 
     private void Update()
     {

@@ -17,8 +17,9 @@ public class PathFollowing : SteeringBehaviour
     private bool isAtTarget = false;
     private List<Node> path;
 
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         // SET graph to FindObjectOfType Graph
         graph = FindObjectOfType<Graph>();
         // IF graph is null
@@ -84,7 +85,7 @@ public class PathFollowing : SteeringBehaviour
         Vector3 force = Vector3.zero;
 
         // IF path is not null AND path count is greather than zero
-        if (path != null & path.Count > 0)
+        if (path != null && path.Count > 0)
         {
             // SET currentPos to path[currentNode] position
             Vector3 currentPos = path[currentNode].position;
@@ -102,25 +103,25 @@ public class PathFollowing : SteeringBehaviour
             }
             // SET force to Seek() and pass currentPos
             force = Seek(currentPos);
-        }
-
-        #region GIZMOS
-        // SET prevPosition to path[0].position
-        Vector3 prevPosition = path[0].position;
-        // FOREACH node in path
-        foreach (Node node in path)
-        {
-            // CALL GizmosGl.AddSphere() and pass node's position, graph's nodeRadius, Quaternion identity, any color
-            GizmosGL.AddSphere(node.position, nodeRadius, Quaternion.identity, Color.red);
-            // CALL GizmosGl.AddLine() and pass prev, node's positin, 0.1f, 0.1f, any color, any color
-            GizmosGL.AddLine(prevPosition, node.position, 0.1f, 0.1f, Color.magenta, Color.yellow);
-            // SET prev to node's position
-            prevPosition = node.position;
+            
+            #region GIZMOS
+            // SET prevPosition to path[0].position
+            Vector3 prevPosition = path[0].position;
+            // FOREACH node in path
+            foreach (Node node in path)
+            {
+                // CALL GizmosGl.AddSphere() and pass node's position, graph's nodeRadius, Quaternion identity, any color
+                GizmosGL.AddSphere(node.position, graph.nodeRadius, Quaternion.identity, Color.red);
+                // CALL GizmosGl.AddLine() and pass prev, node's positin, 0.1f, 0.1f, any color, any color
+                GizmosGL.AddLine(prevPosition, node.position, 0.1f, 0.1f, Color.magenta, Color.yellow);
+                // SET prev to node's position
+                prevPosition = node.position;
+            }
+            #endregion
         }
         #endregion
-
         // RETURN force
         return force;
     }
-    #endregion
+
 }

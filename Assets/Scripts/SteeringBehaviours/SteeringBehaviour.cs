@@ -9,7 +9,7 @@ public class SteeringBehaviour : MonoBehaviour
     [HideInInspector] public AIAgent owner;
 
     // Use this for initialization
-    void Awake()
+    protected virtual void Start()
     {
         owner = GetComponent<AIAgent>();
     }

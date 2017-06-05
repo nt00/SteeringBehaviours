@@ -21,6 +21,8 @@ public class AgentDirector : MonoBehaviour
     // Apply selected target to all agents
     void ApplySelection()
     {
+        // SET agents to FindObjectsofType AIAgent
+        agents = FindObjectsOfType<AIAgent>();
         // FOREACH agent in agents
         foreach (AIAgent agent in agents)
         {
