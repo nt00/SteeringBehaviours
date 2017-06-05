@@ -19,8 +19,8 @@ public class Flee : SteeringBehaviour
             return force;
         }
 
-        // SET desiredForce to direction from target to owner's position;
-        Vector3 desiredForce = target.position - owner.transform.position;
+        // SET desiredForce to direction from owner's position to target;
+        Vector3 desiredForce = owner.transform.position - target.position;
         // SET desiredForce y to zero
         desiredForce.y = 0f;
 
